@@ -26,6 +26,7 @@
                 "-lc10", "-ltorch_cpu", "-ltorch_python", // "-ltorch_global_deps", "-ltorch", "-lshm",
                 "-D_GLIBCXX_USE_CXX11_ABI=0",
                 // "-I",               "${workspaceFolder}/third_party/abseil-cpp/install/include",
+                "-I", "${workspaceFolder}/external",
             ],
             "options": {
                 "cwd": "${fileDirname}"

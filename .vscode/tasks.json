@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always", "-std=c++17", "-g",
+                "${file}", "-o", "${fileDirname}/bin/${fileBasenameNoExtension}",
+                "-pthread",
+                // "-I", "${workspaceFolder}",
+                // "-I",               "${workspaceFolder}/third_party/NumCpp-Version_2.10.1/include",
+                // "-I",               "${workspaceFolder}/third_party/eigen-3.4.0",
+                // "-I",               "${workspaceFolder}/third_party/eigen-3.4.0/unsupported",
+                // "-I",               "${workspaceFolder}/third_party/oneapi-tbb-2021.8.0/include",
+                // "-L/usr/local/lib", "${workspaceFolder}/third_party/oneapi-tbb-2021.8.0/lib/intel64/gcc4.8/libtbb.so",
+                "-I",               "${CONDA_PREFIX}/envs/cxx/include",
+                "-I",               "${CONDA_PREFIX}/envs/cxx/include/python3.10",
+                // "-L${CONDA_PREFIX}/envs/cxx/lib", "${CONDA_PREFIX}/envs/cxx/lib/libtbb.so",
+                "-L${CONDA_PREFIX}/envs/cxx/lib", "-ldnnl", "-lpython3.10",
+                // "-lmkl_rt", "-lmkl_intel_lp64", "-lmkl_core", "-lmkl_gnu_thread", "-lm", "-Wl,--no-as-needed",
+                "-I",               "${CONDA_PREFIX}/envs/cxx/lib/python3.10/site-packages/torch/include",
+                "-I",               "${CONDA_PREFIX}/envs/cxx/lib/python3.10/site-packages/torch/include/torch/csrc/api/include",
+                "-L${CONDA_PREFIX}/envs/cxx/lib/python3.10/site-packages/torch/lib",
+                "-lc10", "-ltorch_cpu", "-ltorch_python", // "-ltorch_global_deps", "-ltorch", "-lshm",
+                "-D_GLIBCXX_USE_CXX11_ABI=0",
+                // "-I",               "${workspaceFolder}/third_party/abseil-cpp/install/include",
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "compiler: /usr/bin/g++"
+        }
+    ]
+}

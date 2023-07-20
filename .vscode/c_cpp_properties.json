@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${CONDA_PREFIX}/envs/cxx/include",
+                "${CONDA_PREFIX}/envs/cxx/include/python3.10",
+                "${CONDA_PREFIX}/envs/cxx/lib/python3.10/site-packages/torch/include",
+                "${CONDA_PREFIX}/envs/cxx/lib/python3.10/site-packages/torch/include/torch/csrc/api/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+            // "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 EXT_SRCS = [
-    'csrc/mish_cuda.cpp',
-    'csrc/mish_cpu.cpp',
-    'csrc/mish_kernel.cu',
+    'csrc/mish/mish_cuda.cpp',
+    'csrc/mish/mish_cpu.cpp',
+    'csrc/mish/mish_kernel.cu',
 ]
 
 setup(

@@ -8,7 +8,7 @@ EXT_SRCS = [
 ]
 
 setup(
-    name='mish_cuda',
+    name='activation',
     version='0.0.3',
     packages=find_packages('src'),
     package_dir={'': 'src'},

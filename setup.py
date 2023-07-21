@@ -17,7 +17,7 @@ setup(
     install_requires=['torch>=1.2'],
     ext_modules=[
         CUDAExtension(
-            'mish_cuda._C',
+            'activation/mish_cuda._C',
             EXT_SRCS,
             extra_compile_args={
                 'cxx': [],

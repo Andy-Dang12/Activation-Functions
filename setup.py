@@ -24,7 +24,7 @@ swish_extension = CUDAExtension(
     name='activation/swish._C',
     sources=[
         'csrc/swish/swish.cpp',
-        'csrc/swish/swish.cu'
+        'csrc/swish/swish_kernel.cu'
     ],
     **CUDAExt_kwargs
 )

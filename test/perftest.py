@@ -6,7 +6,7 @@ import re
 import torch
 from torch.nn import functional as F
 import numpy as np
-from mish_cuda import MishCudaFunction
+from activation.mish_cuda import MishCudaFunction
 
 def scale(val, spec="#0.4G"):
     PREFIXES = np.array([c for c in u"yzafpnµm kMGTPEZY"])
@@ -63,13 +63,13 @@ if __name__ == '__main__':
     print(f"Profiling on {torch.cuda.get_device_name(dev)}")
     for dtype in dtypes:
         if len(dtypes) > 1:
-            print(f"Testing on {dtype}:")
+            print(f"\nTesting on {dtype}:")
             ind = ' '
         else: ind = ''
         inp = torch.randn(*sz, dtype=dtype, device=dev)
         timings = []
         funcs = {}
-        if args.baseline: funcs.update(relu=torch.nn.functional.relu, softplus=torch.nn.functional.softplus, mish_pt=mish_pt)
+        if args.baseline: funcs.update(relu=F.relu, softplus=F.softplus, mish_pt=mish_pt, mish=F.mish)
         funcs['mish_cuda'] = MishCudaFunction.apply
         max_name = max(map(len, funcs.keys())) + 6
         for (name,func) in funcs.items():

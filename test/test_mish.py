@@ -16,7 +16,7 @@ def get_input_params():
                  for dtype in [torch.float16,torch.float32,torch.float64]
                  for device in devs
                  # Basic ops not supported on CPU/Half, could test by converting but skip for now
-                 if not (dtype==torch.float16 and torch.device(device).type == 'cpu')] 
+                 if not (dtype==torch.float16 and torch.device(device).type == 'cpu')]
     inputs = [(ndim,dtype,device)
               for (dtype,device) in dev_types
               for ndim in [1,2,3,4,8]]
@@ -32,7 +32,7 @@ def test_input(request):
     return t
 
 def test_forward(test_input):
-    from mish_cuda import mish_forward
+    from activation.mish_cuda import mish_forward
     res = mish_forward(test_input)
     exp = mish_forward_pt(test_input)
     assert_allclose(res, exp)
@@ -45,14 +45,14 @@ def get_grads(inp):
     return grad_out, exp
 
 def test_backward(test_input):
-    from mish_cuda import mish_backward
+    from activation.mish_cuda import mish_backward
     x = test_input.requires_grad_()
     grad_out,exp = get_grads(test_input)
     res = mish_backward(test_input.detach(), grad_out)
     assert_allclose(res, exp)
 
 def test_function(test_input):
-    from mish_cuda import MishCudaFunction
+    from activation.mish_cuda import MishCudaFunction
     x1,x2 = (test_input.clone().requires_grad_() for i in range(2))
 
     y1 = mish_forward_pt(x1)
@@ -65,7 +65,7 @@ def test_function(test_input):
     assert_allclose(res, exp)
 
 def test_module(test_input):
-    from mish_cuda import MishCuda
+    from activation.mish_cuda import MishCuda
     x1,x2 = (test_input.clone().requires_grad_() for i in range(2))
 
     m1 = Mish()
@@ -80,18 +80,18 @@ def test_module(test_input):
     assert_allclose(res, exp)
 
 def test_gradient():
-    from mish_cuda import MishCudaFunction
+    from activation.mish_cuda import MishCudaFunction
     inp = torch.randn(10, 10, dtype=torch.float64, requires_grad=True, device='cuda:0')
     assert torch.autograd.gradcheck(MishCudaFunction.apply, inp)
 
 def test_gradgrad():
-    from mish_cuda import MishCudaFunction
+    from activation.mish_cuda import MishCudaFunction
     inp = torch.randn(10, 10, dtype=torch.float64, requires_grad=True, device='cuda:0')
     assert torch.autograd.gradgradcheck(MishCudaFunction.apply, inp)
 
 def test_overlapping():
     '''Test handling of overlapping output tensors'''
-    from mish_cuda import mish_forward
+    from activation.mish_cuda import mish_forward
     t = torch.randn(2, 10, device='cuda:0')
     t_o = t.as_strided((3,10), (5,1)) # OVerlapping
     t_c = t_o.contiguous()             # Contiguous

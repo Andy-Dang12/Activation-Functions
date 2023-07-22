@@ -1,4 +1,4 @@
-ALL = ['MishCuda','MishCudaFunction','mish_forward','mish_backward']
+__all__ = ['MishCuda','MishCudaFunction','mish_forward','mish_backward']
 
 import torch # Must import torch before C extension
 from ._C import mish_forward, mish_backward

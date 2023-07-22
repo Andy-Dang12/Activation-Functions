@@ -47,3 +47,6 @@ Testing on torch.float64:
 (Collected with `test/perftest.py -b`)
 
 Note that double precision performance is very low. Some optimisation might be possible but this does not seem to be a common usage so is not a priority. Raise an issue if you have a use-case for it.
+
+## TODO
+Implement other [activation function](https://docs.google.com/spreadsheets/d/1tXqeN1jg3MLOA9unR-Q1rMPai5Kqu9FKFutT-O4HMbE/edit)

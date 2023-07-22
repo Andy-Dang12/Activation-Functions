@@ -21,7 +21,7 @@ mish_extension = CUDAExtension(
 )
 
 swish_extension = CUDAExtension(
-    name='activation/swish_cuda._C',
+    name='activation/swish._C',
     sources=[
         'csrc/swish/swish.cpp',
         'csrc/swish/swish.cu'
@@ -39,7 +39,7 @@ setup(
     install_requires=['torch>=1.2'],
     ext_modules=[
         mish_extension,
-        swish_extension,
+        # swish_extension,
     ],
     cmdclass={
         'build_ext': BuildExtension

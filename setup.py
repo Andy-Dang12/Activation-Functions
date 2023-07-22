@@ -38,8 +38,8 @@ setup(
     zip_safe=False,
     install_requires=['torch>=1.2'],
     ext_modules=[
-        mish_extension,
-        # swish_extension,
+        # mish_extension,
+        swish_extension,
     ],
     cmdclass={
         'build_ext': BuildExtension

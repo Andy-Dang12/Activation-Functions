@@ -11,7 +11,7 @@ CUDAExt_kwargs = {
 }
 
 mish_extension = CUDAExtension(
-    name ='activation/mish_cuda._C',
+    name ='activation/mish._C',
     sources = [
         'csrc/mish/mish_cuda.cpp',
         'csrc/mish/mish_cpu.cpp',
